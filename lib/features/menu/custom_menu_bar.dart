@@ -12,9 +12,8 @@ class CustomMenuBar extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     String openedFilePath = ref.watch(currentSelectedPathProvider);
-    return Container(
+    return SizedBox(
       height: 40,
-      color: Colors.grey[900],
       child: Row(
         children: [
           // Native Flutter MenuBar
@@ -44,10 +43,20 @@ class CustomMenuBar extends ConsumerWidget {
                     child: const Text('Exit'),
                   ),
                 ],
-                child: const Text(
-                  'File',
-                  style: TextStyle(color: Colors.white),
-                ),
+                child: const Text('File'),
+              ),
+              SubmenuButton(
+                menuChildren: [
+                  MenuItemButton(
+                    onPressed: () => showAboutDialog(
+                      context: context,
+                      applicationName: 'cdmdreader',
+                      applicationVersion: 'version: 1.0.0',
+                    ),
+                    child: const Text("About"),
+                  ),
+                ],
+                child: Text("About"),
               ),
             ],
           ),
